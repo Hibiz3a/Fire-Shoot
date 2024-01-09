@@ -18,8 +18,8 @@ public class Pl_PlayerMotor : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
         walk = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
