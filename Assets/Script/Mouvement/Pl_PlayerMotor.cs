@@ -6,7 +6,11 @@ public class Pl_PlayerMotor : MonoBehaviour
 {
     private Vector3 velocity;
     private Vector3 rotation;
-    private Vector3 rotationCamera;
+    private float rotationCameraX = 0f;
+    private float currentCameraRotationX = -90f;
+
+    [SerializeField]
+    private float cameraAngle = 120f;
 
     [SerializeField]
     private Camera cam;
@@ -48,9 +52,13 @@ public class Pl_PlayerMotor : MonoBehaviour
 
     private void performRotation()
     {
+        //on calcule la rotation de la camera 
         rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
+        currentCameraRotationX -= rotationCameraX;
+        currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraAngle, -30);
 
-        cam.transform.Rotate(-rotationCamera);
+        //on applique la rotation de la camera
+        cam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 90f, 0f);
     }
 
     public void Rotate(Vector3 _rotation)
@@ -58,8 +66,8 @@ public class Pl_PlayerMotor : MonoBehaviour
         rotation = _rotation;
     }
 
-    public void RotateCamera(Vector3 _rotationCamera)
+    public void RotateCamera(float _rotationCameraX)
     {
-        rotationCamera = _rotationCamera;
+        rotationCameraX = _rotationCameraX;
     }
 }

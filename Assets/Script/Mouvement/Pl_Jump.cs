@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.InputSystem;
 
 public class Jump : MonoBehaviour
 {
@@ -30,12 +31,20 @@ public class Jump : MonoBehaviour
 
     void LateUpdate()
     {
-        playerAnim.SetBool("crouch", !groundCheck.isGrounded);
-        // Jump when the Jump button is pressed and we are on the ground.
-        if (Input.GetButtonDown("Jump") && (!groundCheck || groundCheck.isGrounded))
+
+    }
+
+    public void GetJumpInput(InputAction.CallbackContext ctx)
+    {if(ctx.performed)
         {
-            rigidbody.AddForce(Vector3.up * jumpStrength * 10);
-            Jumped?.Invoke();
+            playerAnim.SetBool("crouch", !groundCheck.isGrounded);
+            // Jump when the Jump button is pressed and we are on the ground.
+            if (Input.GetButtonDown("Jump") && (!groundCheck || groundCheck.isGrounded))
+            {
+                rigidbody.AddForce(Vector3.up * jumpStrength * 10);
+                Jumped?.Invoke();
+            }
         }
+
     }
 }

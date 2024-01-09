@@ -62,12 +62,12 @@ public class Pl_PlayerMouvement : MonoBehaviour
 
         float xRot = Input.GetAxisRaw("Mouse Y");
 
-        Vector3 cameraRotation = new Vector3(xRot, 0, 0) * mouseSensitivityY;
+        float cameraRotationX = xRot * mouseSensitivityY;
 
-        playerMotor.RotateCamera(cameraRotation);
+        playerMotor.RotateCamera(cameraRotationX);
     }
 
-    public void GetInput(InputAction.CallbackContext ctx)
+    public void GetInputSprint(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
@@ -76,6 +76,13 @@ public class Pl_PlayerMouvement : MonoBehaviour
         else
         {
             speed = speedBase;
+        }
+    }
+    public void GetInputWalk(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed)
+        {
+            MouvementPlayer();
         }
     }
 }
