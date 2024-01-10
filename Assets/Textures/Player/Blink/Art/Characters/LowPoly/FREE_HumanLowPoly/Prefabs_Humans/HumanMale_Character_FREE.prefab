@@ -993,10 +993,12 @@ GameObject:
   - component: {fileID: 2529112046460033509}
   - component: {fileID: 7147225462256198348}
   - component: {fileID: 1434055947075473061}
+  - component: {fileID: 5641916171833631121}
   - component: {fileID: 5942128836395980849}
   - component: {fileID: 247128593284694411}
   - component: {fileID: 9215682608053513860}
   - component: {fileID: 9024470424001474486}
+  - component: {fileID: 3288035076050590684}
   m_Layer: 6
   m_Name: HumanMale_Character_FREE
   m_TagString: Player
@@ -1082,7 +1084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e667a84a57f6024d80dd4e712202cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraAngle: 85
+  cameraAngle: 120
   cam: {fileID: 1349711447374925056}
   walk: {fileID: 4540229000190281644}
 --- !u!114 &1691007165814986113
@@ -1126,7 +1128,7 @@ MonoBehaviour:
   cam: {fileID: 1349711447374925056}
   mask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 183
   weapon:
     name: AKM
     damage: 10
@@ -1162,6 +1164,23 @@ MonoBehaviour:
   jumpStrength: 30
   playerAnim: {fileID: 4540229000190281644}
   groundCheck: {fileID: 3565538148832993298}
+--- !u!114 &5641916171833631121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782702501690864755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af759882927e82d478b8dce63cef7ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0.1
+  maxHealth: 100
+  disableOnDeath: []
 --- !u!114 &5942128836395980849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,7 +1299,19 @@ MonoBehaviour:
     m_ActionId: 31d1184e-86a7-4a90-94be-4f8f3e4a78e8
     m_ActionName: Player/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1434055947075473061}
+        m_TargetAssemblyTypeName: Jump, Assembly-CSharp
+        m_MethodName: GetJumpInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e9f868b8-32c6-479c-81cc-1332129a922d
     m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1302,7 +1333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientStarted: 0
   sceneId: 0
-  _assetId: 1762565778
+  _assetId: 3644626245
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -1357,6 +1388,27 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 1
   animator: {fileID: 4540229000190281644}
+--- !u!65 &3288035076050590684
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782702501690864755}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.8290595, z: 0.64783293}
+  m_Center: {x: 0, y: 1.0374906, z: -0.032698125}
 --- !u!1 &1789272960074739661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,11 +2419,9 @@ GameObject:
   m_Component:
   - component: {fileID: 450977524300683742}
   - component: {fileID: 3721571313622080408}
-  - component: {fileID: 2840989939214173515}
-  - component: {fileID: 4702503258888768994}
   m_Layer: 6
   m_Name: Arms
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2454,48 +2504,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.18740088, y: -0.11642546, z: -0.00007349253}
     m_Extent: {x: 0.13046974, y: 0.17996502, z: 0.8003208}
   m_DirtyAABB: 0
---- !u!65 &2840989939214173515
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3671890786779363153}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.64404845, y: 0.31646943, z: 0.5509204}
-  m_Center: {x: 0.45080078, y: 1.4390377, z: -0.20488581}
---- !u!65 &4702503258888768994
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3671890786779363153}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6682451, y: 0.31646943, z: 0.64163226}
-  m_Center: {x: -0.53417253, y: 1.4390377, z: -0.1595299}
 --- !u!1 &3681047162647019751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,10 +2687,10 @@ GameObject:
   m_Component:
   - component: {fileID: 847628592748719294}
   - component: {fileID: 2749232806715078536}
-  - component: {fileID: 2039715788514177158}
+  - component: {fileID: 4212389886483912922}
   m_Layer: 6
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2811,7 +2819,7 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.28162423, y: -0.03190115, z: 0.000000029802322}
     m_Extent: {x: 0.2907795, y: 0.20579639, z: 0.2620001}
   m_DirtyAABB: 0
---- !u!65 &2039715788514177158
+--- !u!65 &4212389886483912922
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2830,8 +2838,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5457206, y: 0.58916354, z: 0.42346573}
-  m_Center: {x: -0.01000452, y: 1.3396628, z: -0.06360781}
+  m_Size: {x: 0.5457206, y: 0.58916354, z: 0.4497374}
+  m_Center: {x: -0.010004532, y: 1.3396628, z: -0.05047199}
 --- !u!1 &3716317115370018060
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,7 +4040,7 @@ GameObject:
   - component: {fileID: 3565538148832993298}
   m_Layer: 6
   m_Name: Feet
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4331,10 +4339,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2144352035737229188}
   - component: {fileID: 9206880669787365435}
-  - component: {fileID: 673565208612162080}
+  - component: {fileID: 6069688372670594122}
   m_Layer: 6
   m_Name: Neck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4463,7 +4471,7 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.5180553, y: -0.04191573, z: 0}
     m_Extent: {x: 0.08937712, y: 0.09414224, z: 0.081499994}
   m_DirtyAABB: 0
---- !u!65 &673565208612162080
+--- !u!65 &6069688372670594122
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4589,10 +4597,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3244691087426676764}
   - component: {fileID: 4917701622192142817}
-  - component: {fileID: 3582294226608741160}
+  - component: {fileID: 2127977039346438912}
   m_Layer: 6
   m_Name: Legs
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4721,7 +4729,7 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.49446505, y: -0.022481047, z: -0.000000007450581}
     m_Extent: {x: 0.50661, y: 0.15771115, z: 0.23135671}
   m_DirtyAABB: 0
---- !u!65 &3582294226608741160
+--- !u!65 &2127977039346438912
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4838,11 +4846,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3927421827543855076}
   - component: {fileID: 8848217695815792445}
-  - component: {fileID: 4883980426912963836}
-  - component: {fileID: 3468679320356774669}
   m_Layer: 6
   m_Name: Hands
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4971,48 +4977,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.37839538, y: -0.13670833, z: 0.000000059604645}
     m_Extent: {x: 0.080374345, y: 0.09889519, z: 1.0070145}
   m_DirtyAABB: 0
---- !u!65 &4883980426912963836
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6561344539034066924}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.26341772, y: 0.16610718, z: 0.2559327}
-  m_Center: {x: -0.91657364, y: 1.4345877, z: -0.002640307}
---- !u!65 &3468679320356774669
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6561344539034066924}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.2975781, y: 0.16610718, z: 0.26584303}
-  m_Center: {x: 0.8463912, y: 1.4345877, z: -0.29693264}
 --- !u!1 &6659000880637315493
 GameObject:
   m_ObjectHideFlags: 0
@@ -6076,10 +6040,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3696354557974323922}
   - component: {fileID: 723598234050729780}
-  - component: {fileID: 8889806530917898774}
+  - component: {fileID: 4315271208979507043}
   m_Layer: 6
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6209,7 +6173,7 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.6670713, y: 0.012661561, z: 0}
     m_Extent: {x: 0.14910048, y: 0.13101418, z: 0.11378349}
   m_DirtyAABB: 0
---- !u!65 &8889806530917898774
+--- !u!65 &4315271208979507043
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

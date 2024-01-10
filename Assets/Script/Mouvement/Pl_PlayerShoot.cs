@@ -27,13 +27,15 @@ public class Pl_PlayerShoot : NetworkBehaviour
         
     }
 
+    [Client]
     private void Shoot()
     {
         RaycastHit hit;
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range, mask) )
         {
-            Debug.Log("Objet toucher : " + hit.collider.name);
+            if(hit.collider.CompareTag("Player"))
+            CmdPlayerShoot(hit.collider.name, weapon.damage);
         }
     }
 
@@ -43,6 +45,15 @@ public class Pl_PlayerShoot : NetworkBehaviour
         {
             Shoot();
         }
+    }
+
+    [Command]
+    private void CmdPlayerShoot(string playerID, float damage)
+    {
+        Debug.Log(playerID + " a ete toucher");
+
+        Pl_Player player = GameManager.GetPLayer(playerID);
+        player.RpcTakeDamage(damage);
     }
 
 }

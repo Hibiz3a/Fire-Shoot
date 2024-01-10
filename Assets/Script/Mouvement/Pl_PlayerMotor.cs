@@ -9,8 +9,8 @@ public class Pl_PlayerMotor : MonoBehaviour
     private float rotationCameraX = 0f;
     private float currentCameraRotationX = -90f;
 
-    [SerializeField]
-    private float cameraAngle = 120f;
+    [SerializeField] private float cameraAngle = 120f;
+    
 
     [SerializeField]
     private Camera cam;
@@ -22,10 +22,21 @@ public class Pl_PlayerMotor : MonoBehaviour
 
     private void Start()
     {
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         walk = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     public void Move(Vector3 _velocity)

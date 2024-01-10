@@ -13,10 +13,13 @@ public class Pl_PlayerSetup : NetworkBehaviour
 
     private void Start()
     {
+
         if (!isLocalPlayer)
         {
             DisableCOmponenets();
             AssignRemotePlayer();
+
+
         }
         else
         {
@@ -26,6 +29,19 @@ public class Pl_PlayerSetup : NetworkBehaviour
                 sceneCamera.gameObject.SetActive(false);
             }
         }
+
+        GetComponent<Pl_Player>().Setup();
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        string netID = GetComponent<NetworkIdentity>().netId.ToString();
+
+        Pl_Player player = GetComponent<Pl_Player>();
+
+        GameManager.RegisterPlayer(netID, player);
     }
 
     private void DisableCOmponenets()
@@ -48,5 +64,7 @@ public class Pl_PlayerSetup : NetworkBehaviour
         {
             sceneCamera.gameObject.SetActive(true);
         }
+
+        GameManager.UnregisterPlayer(transform.name);
     }
 }
