@@ -23,7 +23,7 @@ public class Pl_PlayerShoot : MonoBehaviour
 
     private void Start()
     {
-        inputManager.inputMaster.Movement.fire.performed += _ => shoot();
+        inputManager.inputMaster.Movement.fire.started += _ => shoot();
         mainCam = Camera.main;
     }
 
