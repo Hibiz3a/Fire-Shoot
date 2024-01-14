@@ -1,59 +1,47 @@
 using UnityEngine;
-using Mirror;
 using UnityEngine.InputSystem;
+using TMPro;
+using Unity.VisualScripting;
+using System.Collections;
 
-public class Pl_PlayerShoot : NetworkBehaviour
+public class Pl_PlayerShoot : MonoBehaviour
 {
+    float nextTimeToFire;
     [SerializeField]
-    private Camera cam;
+    private float range;
 
     [SerializeField]
-    private LayerMask mask;
+    private float fireRate;   
+    [SerializeField]
+    private float damage;
 
-    public Pl_PlayerWeapon weapon;
+    [SerializeField]
 
+    Camera mainCam;
 
-    void Start()
+    public InputManager inputManager;
+
+    private void Start()
     {
-        if(cam == null)
-        {
-            Debug.LogError("Pas de camera referencer sur le Pl_Player Shoot");
-            this.enabled = false;
-        }   
+        inputManager.inputMaster.Movement.fire.performed += _ => shoot();
+        mainCam = Camera.main;
     }
 
-    private void Update()
-    {
-        
-    }
 
-    [Client]
-    private void Shoot()
+    private void shoot()
     {
+
+        Vector3 rayOrigin = mainCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+
         RaycastHit hit;
-
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range, mask) )
+        if (Physics.Raycast(rayOrigin, mainCam.transform.forward, out hit, range))
         {
-            if(hit.collider.CompareTag("Player"))
-            CmdPlayerShoot(hit.collider.name, weapon.damage);
+            if (hit.transform.CompareTag("Zombie"))
+            {
+                Zm_ZombieStats zombieStats = hit.transform.GetComponent<Zm_ZombieStats>();
+                Debug.Log("Zombie is Hit");
+                zombieStats.TakeDamage(damage);
+            }
         }
     }
-
-    public void GetFireAction(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed)
-        {
-            Shoot();
-        }
-    }
-
-    [Command]
-    private void CmdPlayerShoot(string playerID, float damage)
-    {
-        Debug.Log(playerID + " a ete toucher");
-
-        Pl_Player player = GameManager.GetPLayer(playerID);
-        player.RpcTakeDamage(damage);
-    }
-
 }

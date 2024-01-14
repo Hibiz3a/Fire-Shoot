@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Zombie
+  - Primary
+  - Weapon
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -13,8 +17,8 @@ TagManager:
   - UI
   - localPlayer
   - RemotePlayer
-  - 
-  - 
+  - Zombie
+  - weapon
   - 
   - 
   - 
